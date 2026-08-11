@@ -14,16 +14,20 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Install Newman
-        run: npm install -g newman
+        run: npm install -g newman newman-reporter-htmlextra
 
-      - name: Show Newman Version
-        run: newman --version
+      - name: Run Postman Collection
+        run: |
+          newman run "collections/API Sentinel - Layer7.postman_collection.json" \
+          -e "collections/API Sentinel - Layer7.postman_environment.json" \
+          -r cli,htmlextra \
+          --reporter-htmlextra-export reports/report.html
 
-      - name: Verify Collection Exists
-        run: ls -R
-
-      - name: CI Setup Complete
-        run: echo "Workflow is ready!"
+      - name: Upload HTML Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: Newman-Report
+          path: reports/report.html
