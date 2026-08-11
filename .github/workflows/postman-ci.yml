@@ -1,0 +1,29 @@
+name: API Sentinel CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  postman-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Newman
+        run: npm install -g newman
+
+      - name: Show Newman Version
+        run: newman --version
+
+      - name: Verify Collection Exists
+        run: ls -R
+
+      - name: CI Setup Complete
+        run: echo "Workflow is ready!"
