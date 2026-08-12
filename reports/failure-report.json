@@ -1,0 +1,15 @@
+{
+  "timestamp": "12/8/2026, 9:29:23 pm",
+  "collection": "API Sentinel - Layer7",
+  "changedApi": "Initiate Transaction",
+  "failedApi": "Transaction Status",
+  "endpoint": "/transaction/status",
+  "method": "GET",
+  "expectedStatus": 200,
+  "actualStatus": 500,
+  "error": "Internal Server Error",
+  "rootCause": "Dependent API failed after Initiate Transaction",
+  "rollback": "COMPLETED",
+  "notification": "SENT",
+  "recommendation": "Fix API and re-run pipeline."
+}

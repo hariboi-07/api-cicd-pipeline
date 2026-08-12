@@ -1,0 +1,101 @@
+{
+  "▶ Normal Transaction Copy": {
+    "nextRequest": "Initiate Transaction"
+  },
+  "▶ Duplicate Transaction Copy": {
+    "nextRequest": "Initiate Transaction"
+  },
+  "▶ Beneficiary Timeout": {
+    "nextRequest": "Initiate Transaction"
+  },
+  "Initiate Transaction": {
+    "nextRequest": "Transaction Status"
+  },
+  "Transaction Status": {
+    "nextRequest": "Gateway Health"
+  },
+  "Transaction Reversal": {
+    "nextRequest": "Health Check"
+  },
+  "Health Check": {
+    "nextRequest": "Gateway Health"
+  },
+  "Gateway Health": {
+    "nextRequest": "Transaction API Health"
+  },
+  "Transaction API Health": {
+    "nextRequest": "Health Summary"
+  },
+  "Health Summary": {
+    "nextRequest": "Latency Report"
+  },
+  "Latency Report": {
+    "nextRequest": "Analyze Failure"
+  },
+  "Analyze Failure": {
+    "nextRequest": "Failure Statistics"
+  },
+  "Failure Statistics": {
+    "nextRequest": "Failure History"
+  },
+  "Failure History": {
+    "nextRequest": "Evaluate Risk"
+  },
+  "Evaluate Risk": {
+    "nextRequest": "Execute Automation"
+  },
+  "Execute Automation": {
+    "nextRequest": "Automation Status"
+  },
+  "Automation Status": {
+    "nextRequest": "Retry Transaction"
+  },
+  "Retry Transaction": {
+    "nextRequest": "Escalate Incident"
+  },
+  "Escalate Incident": {
+    "nextRequest": "Reverse Transaction"
+  },
+  "Reverse Transaction": {
+    "nextRequest": "Reversal Status"
+  },
+  "Reversal Status": {
+    "nextRequest": "Reversal Audit"
+  },
+  "Reversal Audit": {
+    "nextRequest": "Compliance Status"
+  },
+  "Compliance Status": {
+    "nextRequest": "Audit Summary"
+  },
+  "Audit Summary": {
+    "nextRequest": "Audit Trail"
+  },
+  "Audit Trail": {
+    "nextRequest": "Generate Dashboard"
+  },
+  "Generate Dashboard": {
+    "nextRequest": "Evaluate Alert"
+  },
+  "Evaluate Alert": {
+    "nextRequest": "Alert Status"
+  },
+  "Alert Status": {
+    "nextRequest": "Alert History"
+  },
+  "Alert History": {
+    "nextRequest": "Email Notification"
+  },
+  "Email Notification": {
+    "nextRequest": "Notification Status"
+  },
+  "Notification Status": {
+    "nextRequest": "Notification History"
+  },
+  "Notification History": {
+    "nextRequest": "Executive Dashboard"
+  },
+  "Executive Dashboard": {
+    "nextRequest": null
+  }
+}

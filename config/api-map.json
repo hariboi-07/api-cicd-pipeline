@@ -1,191 +1,200 @@
 {
+  "▶ Normal Transaction Copy": {
+    "folder": "00 Normal Scenario",
+    "method": "GET",
+    "endpoint": "https://postman-echo.com/get",
+    "nextRequest": "Initiate Transaction"
+  },
+  "▶ Duplicate Transaction Copy": {
+    "folder": "00 Duplicate Scenario",
+    "method": "GET",
+    "endpoint": "https://postman-echo.com/get",
+    "nextRequest": "Initiate Transaction"
+  },
+  "▶ Beneficiary Timeout": {
+    "folder": "00 Beneficiary Timeout",
+    "method": "GET",
+    "endpoint": "https://postman-echo.com/get",
+    "nextRequest": "Initiate Transaction"
+  },
   "Initiate Transaction": {
     "folder": "Transaction Service",
     "method": "POST",
-    "endpoint": "/transaction/initiate",
-    "source": "production/transaction/initiate.js",
-    "dependsOn": [],
-    "affects": [
-      "Transaction Status",
-      "Gateway Health",
-      "Transaction API Health",
-      "Health Summary",
-      "Latency Report",
-      "Evaluate Risk"
-    ]
+    "endpoint": "{{baseUrl}}/transaction/initiate",
+    "nextRequest": "Transaction Status"
   },
-
   "Transaction Status": {
     "folder": "Transaction Service",
     "method": "GET",
-    "endpoint": "/transaction/status",
-    "source": "production/transaction/status.js",
-    "dependsOn": [
-      "Initiate Transaction"
-    ],
-    "affects": [
-      "Health Summary",
-      "Business Dashboard"
-    ]
+    "endpoint": "{{baseUrl}}/transaction/status",
+    "nextRequest": "Gateway Health"
   },
-
   "Transaction Reversal": {
     "folder": "Transaction Service",
     "method": "POST",
-    "endpoint": "/transaction/reversal",
-    "source": "production/transaction/reversal.js",
-    "dependsOn": [
-      "Transaction Status"
-    ],
-    "affects": [
-      "Failure History",
-      "Business Dashboard"
-    ]
+    "endpoint": "{{baseUrl}}/transaction/reversal",
+    "nextRequest": "Health Check"
   },
-
+  "Health Check": {
+    "folder": "01 Banking APIs (Layer7)",
+    "method": "GET",
+    "endpoint": "https://postman-echo.com/get",
+    "nextRequest": "Gateway Health"
+  },
   "Gateway Health": {
-    "folder": "API Health Monitor",
+    "folder": "02 API Health Monitor",
     "method": "GET",
-    "endpoint": "/health/gateway",
-    "source": "production/health/gateway.js",
-    "dependsOn": [],
-    "affects": [
-      "Health Summary",
-      "Latency Report"
-    ]
+    "endpoint": "http://192.168.10.40:8080/health/gateway",
+    "nextRequest": "Transaction API Health"
   },
-
   "Transaction API Health": {
-    "folder": "API Health Monitor",
+    "folder": "02 API Health Monitor",
     "method": "GET",
-    "endpoint": "/health/transaction",
-    "source": "production/health/transaction.js",
-    "dependsOn": [
-      "Initiate Transaction"
-    ],
-    "affects": [
-      "Health Summary"
-    ]
+    "endpoint": "http://192.168.10.40:8080/health/transaction",
+    "nextRequest": "Health Summary"
   },
-
   "Health Summary": {
-    "folder": "API Health Monitor",
+    "folder": "02 API Health Monitor",
     "method": "GET",
-    "endpoint": "/health/summary",
-    "source": "production/health/summary.js",
-    "dependsOn": [
-      "Gateway Health",
-      "Transaction API Health"
-    ],
-    "affects": [
-      "Business Dashboard"
-    ]
+    "endpoint": "http://192.168.10.40:8080/health/summary",
+    "nextRequest": "Latency Report"
   },
-
   "Latency Report": {
-    "folder": "API Health Monitor",
+    "folder": "02 API Health Monitor",
     "method": "GET",
-    "endpoint": "/health/latency",
-    "source": "production/health/latency.js",
-    "dependsOn": [
-      "Gateway Health"
-    ],
-    "affects": [
-      "Business Dashboard"
-    ]
+    "endpoint": "http://192.168.10.40:8080/health/latency",
+    "nextRequest": "Analyze Failure"
   },
-
   "Analyze Failure": {
-    "folder": "Root Cause Analyzer",
+    "folder": "03 Root Cause Analyzer",
     "method": "GET",
-    "endpoint": "/analysis/rootcause",
-    "source": "production/analysis/rootcause.js",
-    "dependsOn": [
-      "Transaction Status"
-    ],
-    "affects": [
-      "Failure Statistics",
-      "Failure History"
-    ]
+    "endpoint": "http://192.168.10.40:8080/analysis/rootcause",
+    "nextRequest": "Failure Statistics"
   },
-
   "Failure Statistics": {
-    "folder": "Root Cause Analyzer",
+    "folder": "03 Root Cause Analyzer",
     "method": "GET",
-    "endpoint": "/analysis/statistics",
-    "source": "production/analysis/statistics.js",
-    "dependsOn": [
-      "Analyze Failure"
-    ],
-    "affects": [
-      "Business Dashboard"
-    ]
+    "endpoint": "http://192.168.10.40:8080/analysis/statistics",
+    "nextRequest": "Failure History"
   },
-
   "Failure History": {
-    "folder": "Root Cause Analyzer",
+    "folder": "03 Root Cause Analyzer",
     "method": "GET",
-    "endpoint": "/analysis/history",
-    "source": "production/analysis/history.js",
-    "dependsOn": [
-      "Analyze Failure"
-    ],
-    "affects": [
-      "Business Dashboard"
-    ]
+    "endpoint": "http://192.168.10.40:8080/analysis/history",
+    "nextRequest": "Evaluate Risk"
   },
-
   "Evaluate Risk": {
-    "folder": "Risk Engine",
+    "folder": "04 Risk & Decision Engine",
     "method": "GET",
-    "endpoint": "/transaction/risk",
-    "source": "production/risk/evaluate.js",
-    "dependsOn": [
-      "Initiate Transaction"
-    ],
-    "affects": [
-      "Execute Automation"
-    ]
+    "endpoint": "http://192.168.10.40:8080/transaction/risk",
+    "nextRequest": "Execute Automation"
   },
-
   "Execute Automation": {
-    "folder": "Automation Executor",
+    "folder": "05 Automation Executor",
     "method": "GET",
-    "endpoint": "/automation/execute",
-    "source": "production/automation/execute.js",
-    "dependsOn": [
-      "Evaluate Risk"
-    ],
-    "affects": [
-      "Automation Status"
-    ]
+    "endpoint": "http://192.168.10.40:8080/automation/execute",
+    "nextRequest": "Automation Status"
   },
-
   "Automation Status": {
-    "folder": "Automation Executor",
+    "folder": "05 Automation Executor",
     "method": "GET",
-    "endpoint": "/automation/status",
-    "source": "production/automation/status.js",
-    "dependsOn": [
-      "Execute Automation"
-    ],
-    "affects": [
-      "Business Dashboard"
-    ]
+    "endpoint": "http://192.168.10.40:8080/automation/status",
+    "nextRequest": "Retry Transaction"
   },
-
-  "Business Dashboard": {
-    "folder": "Business Dashboard",
+  "Retry Transaction": {
+    "folder": "05 Automation Executor",
     "method": "GET",
-    "endpoint": "/dashboard",
-    "source": "production/dashboard/dashboard.js",
-    "dependsOn": [
-      "Health Summary",
-      "Latency Report",
-      "Failure Statistics",
-      "Automation Status",
-      "Transaction Status"
-    ],
-    "affects": []
+    "endpoint": "http://192.168.10.40:8080/automation/retry",
+    "nextRequest": "Escalate Incident"
+  },
+  "Escalate Incident": {
+    "folder": "05 Automation Executor",
+    "method": "GET",
+    "endpoint": "http://192.168.10.40:8080/automation/escalate",
+    "nextRequest": "Reverse Transaction"
+  },
+  "Reverse Transaction": {
+    "folder": "06 Execute Reversal",
+    "method": "POST",
+    "endpoint": "http://192.168.10.40:8080/transaction/reversal",
+    "nextRequest": "Reversal Status"
+  },
+  "Reversal Status": {
+    "folder": "06 Execute Reversal",
+    "method": "GET",
+    "endpoint": "http://192.168.10.40:8080/reversal/status",
+    "nextRequest": "Reversal Audit"
+  },
+  "Reversal Audit": {
+    "folder": "06 Execute Reversal",
+    "method": "GET",
+    "endpoint": "http://192.168.10.40:8080/reversal/audit",
+    "nextRequest": "Compliance Status"
+  },
+  "Compliance Status": {
+    "folder": "07 Compliance & Audit Dashboard",
+    "method": "GET",
+    "endpoint": "http://192.168.10.40:8080/compliance/status",
+    "nextRequest": "Audit Summary"
+  },
+  "Audit Summary": {
+    "folder": "07 Compliance & Audit Dashboard",
+    "method": "GET",
+    "endpoint": "http://192.168.10.40:8080/audit/summary",
+    "nextRequest": "Audit Trail"
+  },
+  "Audit Trail": {
+    "folder": "07 Compliance & Audit Dashboard",
+    "method": "GET",
+    "endpoint": "http://192.168.10.40:8080/audit/trail",
+    "nextRequest": "Generate Dashboard"
+  },
+  "Generate Dashboard": {
+    "folder": "08 Business KPI Dashboard",
+    "method": "GET",
+    "endpoint": "http://192.168.10.40:8080/dashboard",
+    "nextRequest": "Evaluate Alert"
+  },
+  "Evaluate Alert": {
+    "folder": "09 Alert Manager",
+    "method": "GET",
+    "endpoint": "http://192.168.10.40:8080/alert/evaluate",
+    "nextRequest": "Alert Status"
+  },
+  "Alert Status": {
+    "folder": "09 Alert Manager",
+    "method": "GET",
+    "endpoint": "http://192.168.10.40:8080/alert/status",
+    "nextRequest": "Alert History"
+  },
+  "Alert History": {
+    "folder": "09 Alert Manager",
+    "method": "GET",
+    "endpoint": "http://192.168.10.40:8080/alert/history",
+    "nextRequest": "Email Notification"
+  },
+  "Email Notification": {
+    "folder": "10 Email Notification",
+    "method": "POST",
+    "endpoint": "http://192.168.10.40:8080/notification/send",
+    "nextRequest": "Notification Status"
+  },
+  "Notification Status": {
+    "folder": "10 Email Notification",
+    "method": "GET",
+    "endpoint": "{{baseUrl}}/notification/status",
+    "nextRequest": "Notification History"
+  },
+  "Notification History": {
+    "folder": "10 Email Notification",
+    "method": "GET",
+    "endpoint": "{{baseUrl}}/notification/history",
+    "nextRequest": "Executive Dashboard"
+  },
+  "Executive Dashboard": {
+    "folder": "11 Executive Dashboard",
+    "method": "GET",
+    "endpoint": "http://192.168.10.40:8080/exec/dashboard",
+    "nextRequest": null
   }
 }
