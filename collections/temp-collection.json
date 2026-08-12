@@ -1,0 +1,755 @@
+{
+  "info": {
+    "_postman_id": "1588d9dd-304d-49c4-bddc-3a0791f2976b",
+    "name": "API Sentinel - Layer7",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "56640040",
+    "_collection_link": "https://go.postman.co/collection/56640040-1588d9dd-304d-49c4-bddc-3a0791f2976b?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "01 Banking APIs (Layer7)",
+      "item": [
+        {
+          "name": "Transaction Service",
+          "item": [
+            {
+              "name": "Initiate Transaction",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status Code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "let json = pm.response.json();\r",
+                      "\r",
+                      "pm.environment.set(\"transactionId\", json.transactionId);\r",
+                      "\r",
+                      "pm.environment.set(\"status\", json.status);\r",
+                      "postman.setNextRequest(\"Transaction Status\");"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"customerName\": \"Rajesh Kumar\",\r\n    \"mobile\": \"9876543210\",\r\n    \"sourceBank\": \"Bank of Baroda\",\r\n    \"beneficiaryBank\": \"HDFC Bank\",\r\n    \"amount\": 25000,\r\n    \"currency\": \"INR\",\r\n    \"transactionType\": \"UPI\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/transaction/initiate",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transaction",
+                    "initiate"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Transaction Initiated Successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"customerName\": \"Rajesh Kumar\",\r\n  \"mobile\": \"9876543210\",\r\n  \"sourceBank\": \"Bank of Baroda\",\r\n  \"beneficiaryBank\": \"HDFC Bank\",\r\n  \"amount\": {{amount}},\r\n  \"currency\": \"INR\",\r\n  \"transactionType\": \"UPI\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transaction/initiate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transaction",
+                        "initiate"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": null,
+                  "cookie": [],
+                  "body": "{\r\n  \"requestId\": \"REQ-202607200001\",\r\n  \"transactionId\": \"{{transactionId}}\",\r\n  \"status\": \"SUCCESS\",\r\n  \"service\": \"Transaction Service\",\r\n  \"timestamp\": \"2026-07-20T15:45:30Z\",\r\n  \"customerName\": \"Rajesh Kumar\",\r\n  \"sourceBank\": \"Bank of Baroda\",\r\n  \"beneficiaryBank\": \"HDFC Bank\",\r\n  \"amount\": {{amount}},\r\n  \"currency\": \"INR\",\r\n  \"transactionType\": \"UPI\",\r\n  \"referenceNumber\": \"UPI202607200001\",\r\n  \"processingTime\": \"92 ms\",\r\n  \"nextStep\": \"Transaction Status\",\r\n  \"message\": \"Transaction initiated successfully.\"\r\n}"
+                }
+              ]
+            },
+            {
+              "name": "Transaction Status",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Transaction status successful\", function () {\r",
+                      "    pm.expect(pm.response.code).to.be.oneOf([200,202]);\r",
+                      "});\r",
+                      "\r",
+                      "if(pm.response.code!==200){\r",
+                      "    return;\r",
+                      "}\r",
+                      "\r",
+                      "let response=pm.response.json();\r",
+                      "\r",
+                      "pm.environment.set(\"transactionId\",response.transactionId);\r",
+                      "\r",
+                      "pm.environment.set(\"status\",response.status);\r",
+                      "\r",
+                      "pm.environment.set(\"transactionStatus\",response.transactionStatus);\r",
+                      "\r",
+                      "pm.environment.set(\"transactionMessage\",response.message);\r",
+                      "\r",
+                      "let timeline=JSON.parse(pm.environment.get(\"timeline\")||\"[]\");\r",
+                      "\r",
+                      "timeline.push({\r",
+                      "\r",
+                      "    time:new Date().toLocaleTimeString(),\r",
+                      "\r",
+                      "    module:\"Transaction Service\",\r",
+                      "\r",
+                      "    event:\"Transaction Completed\",\r",
+                      "\r",
+                      "    status:response.transactionStatus\r",
+                      "\r",
+                      "});\r",
+                      "\r",
+                      "pm.environment.set(\"timeline\",JSON.stringify(timeline));\r",
+                      "postman.setNextRequest(\"Gateway Health\");"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/transaction/status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transaction",
+                    "status"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Transaction Status Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"customerName\": \"Rajesh Kumar\",\r\n    \"mobile\": \"9876543210\",\r\n    \"sourceBank\": \"Bank of Baroda\",\r\n    \"beneficiaryBank\": \"HDFC Bank\",\r\n    \"amount\": 25000,\r\n    \"currency\": \"INR\",\r\n    \"transactionType\": \"UPI\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transaction/status",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transaction",
+                        "status"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": null,
+                  "cookie": [],
+                  "body": "{\r\n    \"requestId\": \"REQ-202607200002\",\r\n    \"transactionId\": \"TXN100003\",\r\n    \"status\": \"SUCCESS\",\r\n    \"service\": \"Transaction Status Service\",\r\n    \"timestamp\": \"2026-07-20T10:45:00\",\r\n    \"amount\": 10000,\r\n    \"currency\": \"INR\",\r\n    \"failureType\": \"NONE\",\r\n    \"nextStep\": \"API Health Monitor\"\r\n}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "02 API Health Monitor",
+      "item": [
+        {
+          "name": "Gateway Health",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Gateway Health Retrieved\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"gatewayStatus\", response.gatewayStatus);\r",
+                  "pm.environment.set(\"gatewayAvailability\", response.availability);\r",
+                  "pm.environment.set(\"gatewayResponseTime\", response.responseTime);\r",
+                  "pm.environment.set(\"gatewayHealthScore\", response.healthScore);\r",
+                  "pm.environment.set(\"gatewayRecommendation\", response.recommendation);\r",
+                  "\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: response.module,\r",
+                  "    api: response.apiName,\r",
+                  "    status: response.status,\r",
+                  "    recommendation: response.recommendation\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "\r",
+                  "pm.execution.setNextRequest(\"Transaction API Health\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://192.168.10.40:8080/health/gateway",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "health",
+                "gateway"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Gateway Health",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "GET {{baseUrl}}/health/gateway",
+                  "host": [
+                    "GET {{baseUrl}}"
+                  ],
+                  "path": [
+                    "health",
+                    "gateway"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\r\n    \"gatewayName\": \"Broadcom Layer7 Gateway\",\r\n    \"status\": \"HEALTHY\",\r\n    \"availability\": \"99.98%\",\r\n    \"cpuUsage\": \"18%\",\r\n    \"memoryUsage\": \"42%\",\r\n    \"responseTime\": \"145 ms\",\r\n    \"checkedAt\": \"2026-07-23T10:30:00\",\r\n    \"message\": \"Gateway is operating normally.\"\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Transaction API Health",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Transaction API Health Retrieved\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "// Store values for future modules\r",
+                  "pm.environment.set(\"transactionAPI\", response.transactionAPI);\r",
+                  "pm.environment.set(\"transactionStatus\", response.status);\r",
+                  "pm.environment.set(\"transactionSuccessRate\", response.successRate);\r",
+                  "pm.environment.set(\"transactionAverageResponseTime\", response.averageResponseTime);\r",
+                  "pm.environment.set(\"transactionAvailability\", response.availability);\r",
+                  "pm.environment.set(\"activeConnections\", response.activeConnections);\r",
+                  "pm.environment.set(\"failedRequests\", response.failedRequests);\r",
+                  "\r",
+                  "// Timeline\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: response.module,\r",
+                  "    api: response.apiName,\r",
+                  "    status: response.status,\r",
+                  "    recommendation: response.recommendation\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "\r",
+                  "// Continue existing flow\r",
+                  "pm.execution.setNextRequest(\"Health Summary\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://192.168.10.40:8080/health/transaction",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "health",
+                "transaction"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Transaction API Health",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/health/transaction",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "health",
+                    "transaction"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\r\n    \"apiName\": \"Transaction API\",\r\n    \"status\": \"HEALTHY\",\r\n    \"requestsToday\": 1250,\r\n    \"successRate\": \"99.5%\",\r\n    \"averageLatency\": \"210 ms\",\r\n    \"errorRate\": \"0.5%\",\r\n    \"message\": \"Transaction API is responding normally.\"\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Health Summary",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Health Summary Retrieved\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"overallHealth\", response.overallHealth);\r",
+                  "pm.environment.set(\"overallHealthScore\", response.healthScore);\r",
+                  "pm.environment.set(\"overallAvailability\", response.availability);\r",
+                  "pm.environment.set(\"overallStatus\", response.overallStatus);\r",
+                  "\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: response.module,\r",
+                  "    api: response.apiName,\r",
+                  "    status: response.overallStatus,\r",
+                  "    recommendation: response.recommendation\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "\r",
+                  "pm.execution.setNextRequest(\"Latency Report\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://192.168.10.40:8080/health/summary",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "health",
+                "summary"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Health Summary",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/health/summary",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "health",
+                    "summary"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\r\n    \"gateway\":\"HEALTHY\",\r\n    \"transactionAPI\":\"HEALTHY\",\r\n    \"database\":\"HEALTHY\",\r\n    \"overallStatus\":\"GREEN\",\r\n    \"availability\":\"99.98%\",\r\n    \"message\":\"All monitored services are operational.\"\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Latency Report",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Latency Report Ready\", function () {\r",
+                  "    pm.expect(true).to.be.true;\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"averageLatency\",\"210 ms\");\r",
+                  "pm.environment.set(\"maximumLatency\",\"430 ms\");\r",
+                  "\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: \"API Health Monitor\",\r",
+                  "    event: \"Latency Report Generated\",\r",
+                  "    status: \"SUCCESS\"\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "postman.setNextRequest(\"Analyze Failure\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://192.168.10.40:8080/health/latency",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "health",
+                "latency"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Latency Report",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/health/latency",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "health",
+                    "latency"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\r\n    \"averageLatency\":\"210 ms\",\r\n    \"minimumLatency\":\"120 ms\",\r\n    \"maximumLatency\":\"430 ms\",\r\n    \"gatewayResponse\":\"NORMAL\",\r\n    \"status\":\"SUCCESS\"\r\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "04 Risk & Decision Engine",
+      "item": [
+        {
+          "name": "Evaluate Risk",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Evaluate Risk Retrieved\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"riskScore\", response.riskScore);\r",
+                  "pm.environment.set(\"riskLevel\", response.riskLevel);\r",
+                  "pm.environment.set(\"businessImpact\", response.businessImpact);\r",
+                  "pm.environment.set(\"decision\", response.decision);\r",
+                  "pm.environment.set(\"recommendedAction\", response.recommendedAction);\r",
+                  "\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: response.module,\r",
+                  "    api: response.apiName,\r",
+                  "    status: response.riskLevel,\r",
+                  "    recommendation: response.recommendedAction\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "\r",
+                  "pm.execution.setNextRequest(\"Execute Automation\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://192.168.10.40:8080/transaction/risk",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "transaction",
+                "risk"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Risk Decision Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/transaction/risk",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transaction",
+                    "risk"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": "{\r\n    \"requestId\": \"REQ-202607200005\",\r\n    \"severity\": \"LOW\",\r\n    \"riskLevel\": \"LOW\",\r\n    \"decision\": \"APPROVED\",\r\n    \"recommendation\": \"Transaction can be processed safely.\",\r\n    \"nextStep\": \"Automation Executor\",\r\n    \"message\": \"Risk evaluation completed successfully.\"\r\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

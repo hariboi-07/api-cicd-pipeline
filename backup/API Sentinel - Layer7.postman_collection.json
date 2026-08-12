@@ -1,0 +1,3546 @@
+{
+  "info": {
+    "_postman_id": "1588d9dd-304d-49c4-bddc-3a0791f2976b",
+    "name": "API Sentinel - Layer7",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "56640040",
+    "_collection_link": "https://go.postman.co/collection/56640040-1588d9dd-304d-49c4-bddc-3a0791f2976b?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "00 Normal Scenario",
+      "item": [
+        {
+          "name": "▶ Normal Transaction Copy",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// ===============================\r",
+                  "// Normal Transaction Scenario\r",
+                  "// ===============================\r",
+                  "\r",
+                  "pm.environment.set(\"scenario\", \"Normal Transaction\");\r",
+                  "pm.environment.set(\"transactionId\", \"TXN100003\");\r",
+                  "pm.environment.set(\"amount\", \"10000\");\r",
+                  "\r",
+                  "pm.environment.set(\"failureType\", \"NONE\");\r",
+                  "\r",
+                  "pm.environment.set(\"diagnosis\", \"\");\r",
+                  "pm.environment.set(\"riskLevel\", \"\");\r",
+                  "pm.environment.set(\"decision\", \"\");\r",
+                  "pm.environment.set(\"reversalStatus\", \"\");\r",
+                  "pm.environment.set(\"notificationStatus\", \"\");\r",
+                  "pm.environment.set(\"auditStatus\", \"\");\r",
+                  "pm.environment.set(\"approvalStatus\", \"\");\r",
+                  "pm.environment.set(\"status\", \"\");\r",
+                  "pm.environment.set(\"apiHealth\", \"\");\r",
+                  "pm.environment.set(\"severity\", \"\");\r",
+                  "pm.environment.set(\"confidence\", \"\");\r",
+                  "pm.environment.set(\"executionStatus\", \"\");\r",
+                  "pm.environment.set(\"recommendation\", \"\");\r",
+                  "pm.environment.set(\"nextModule\", \"API Health Monitor\");\r",
+                  "\r",
+                  "let timeline = [];\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: \"Simulation Control\",\r",
+                  "    event: \"New Transaction Scenario Selected\",\r",
+                  "    status: \"SUCCESS\"\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "\r",
+                  "console.log(\"New Transaction Scenario Loaded\");\r",
+                  "postman.setNextRequest(\"Initiate Transaction\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.environment.set(\"scenario\", \"NORMAL\");\r",
+                  "pm.environment.set(\"amount\", \"10000\");\r",
+                  "pm.environment.set(\"failureType\", \"NONE\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://postman-echo.com/get",
+              "protocol": "https",
+              "host": [
+                "postman-echo",
+                "com"
+              ],
+              "path": [
+                "get"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "00 Duplicate Scenario",
+      "item": [
+        {
+          "name": "▶ Duplicate Transaction Copy",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// ===============================\r",
+                  "// Duplicate Transaction Scenario\r",
+                  "// ===============================\r",
+                  "\r",
+                  "pm.environment.set(\"scenario\", \"Duplicate Transaction\");\r",
+                  "pm.environment.set(\"transactionId\", \"TXN100001\");\r",
+                  "pm.environment.set(\"amount\", \"25000\");\r",
+                  "\r",
+                  "pm.environment.set(\"failureType\", \"Duplicate Transaction\");\r",
+                  "\r",
+                  "pm.environment.set(\"diagnosis\", \"\");\r",
+                  "pm.environment.set(\"riskLevel\", \"\");\r",
+                  "pm.environment.set(\"decision\", \"\");\r",
+                  "pm.environment.set(\"reversalStatus\", \"\");\r",
+                  "pm.environment.set(\"notificationStatus\", \"\");\r",
+                  "pm.environment.set(\"auditStatus\", \"\");\r",
+                  "pm.environment.set(\"approvalStatus\", \"\");\r",
+                  "pm.environment.set(\"status\", \"\");\r",
+                  "pm.environment.set(\"apiHealth\", \"\");\r",
+                  "pm.environment.set(\"severity\", \"\");\r",
+                  "pm.environment.set(\"confidence\", \"\");\r",
+                  "pm.environment.set(\"executionStatus\", \"\");\r",
+                  "pm.environment.set(\"recommendation\", \"\");\r",
+                  "pm.environment.set(\"nextModule\", \"API Health Monitor\");\r",
+                  "\r",
+                  "let timeline = [];\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: \"Simulation Control\",\r",
+                  "    event: \"Duplicate Transaction Scenario Selected\",\r",
+                  "    status: \"SUCCESS\"\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "\r",
+                  "console.log(\"Duplicate Transaction Scenario Loaded\");\r",
+                  "postman.setNextRequest(\"Initiate Transaction\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.environment.set(\"scenario\", \"DUPLICATE\");\r",
+                  "pm.environment.set(\"amount\", \"10000\");\r",
+                  "pm.environment.set(\"failureType\", \"Duplicate Transaction\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://postman-echo.com/get",
+              "protocol": "https",
+              "host": [
+                "postman-echo",
+                "com"
+              ],
+              "path": [
+                "get"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "00 Beneficiary Timeout",
+      "item": [
+        {
+          "name": "▶ Beneficiary Timeout",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.environment.set(\"scenario\", \"BENEFICIARY_TIMEOUT\");\r",
+                  "pm.environment.set(\"amount\", \"10000\");\r",
+                  "pm.environment.set(\"failureType\", \"Beneficiary Timeout\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// ===============================\r",
+                  "// Beneficiary Timeout Scenario\r",
+                  "// ===============================\r",
+                  "\r",
+                  "pm.environment.set(\"scenario\", \"Beneficiary Timeout\");\r",
+                  "pm.environment.set(\"transactionId\", \"TXN100002\");\r",
+                  "pm.environment.set(\"amount\", \"50000\");\r",
+                  "\r",
+                  "pm.environment.set(\"failureType\", \"Beneficiary Timeout\");\r",
+                  "\r",
+                  "pm.environment.set(\"diagnosis\", \"\");\r",
+                  "pm.environment.set(\"riskLevel\", \"\");\r",
+                  "pm.environment.set(\"decision\", \"\");\r",
+                  "pm.environment.set(\"reversalStatus\", \"\");\r",
+                  "pm.environment.set(\"notificationStatus\", \"\");\r",
+                  "pm.environment.set(\"auditStatus\", \"\");\r",
+                  "pm.environment.set(\"approvalStatus\", \"\");\r",
+                  "pm.environment.set(\"status\", \"\");\r",
+                  "pm.environment.set(\"apiHealth\", \"\");\r",
+                  "pm.environment.set(\"severity\", \"\");\r",
+                  "pm.environment.set(\"confidence\", \"\");\r",
+                  "pm.environment.set(\"executionStatus\", \"\");\r",
+                  "pm.environment.set(\"recommendation\", \"\");\r",
+                  "pm.environment.set(\"nextModule\", \"API Health Monitor\");\r",
+                  "\r",
+                  "let timeline = [];\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: \"Simulation Control\",\r",
+                  "    event: \"Beneficiary Timeout Scenario Selected\",\r",
+                  "    status: \"SUCCESS\"\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "\r",
+                  "console.log(\"Beneficiary Timeout Scenario Loaded\");\r",
+                  "postman.setNextRequest(\"Initiate Transaction\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://postman-echo.com/get",
+              "protocol": "https",
+              "host": [
+                "postman-echo",
+                "com"
+              ],
+              "path": [
+                "get"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "01 Banking APIs (Layer7)",
+      "item": [
+        {
+          "name": "Transaction Service",
+          "item": [
+            {
+              "name": "Initiate Transaction",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status Code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "let json = pm.response.json();\r",
+                      "\r",
+                      "pm.environment.set(\"transactionId\", json.transactionId);\r",
+                      "\r",
+                      "pm.environment.set(\"status\", json.status);\r",
+                      "postman.setNextRequest(\"Transaction Status\");"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"customerName\": \"Rajesh Kumar\",\r\n    \"mobile\": \"9876543210\",\r\n    \"sourceBank\": \"Bank of Baroda\",\r\n    \"beneficiaryBank\": \"HDFC Bank\",\r\n    \"amount\": 25000,\r\n    \"currency\": \"INR\",\r\n    \"transactionType\": \"UPI\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/transaction/initiate",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transaction",
+                    "initiate"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Transaction Initiated Successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n  \"customerName\": \"Rajesh Kumar\",\r\n  \"mobile\": \"9876543210\",\r\n  \"sourceBank\": \"Bank of Baroda\",\r\n  \"beneficiaryBank\": \"HDFC Bank\",\r\n  \"amount\": {{amount}},\r\n  \"currency\": \"INR\",\r\n  \"transactionType\": \"UPI\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transaction/initiate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transaction",
+                        "initiate"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": null,
+                  "cookie": [],
+                  "body": "{\r\n  \"requestId\": \"REQ-202607200001\",\r\n  \"transactionId\": \"{{transactionId}}\",\r\n  \"status\": \"SUCCESS\",\r\n  \"service\": \"Transaction Service\",\r\n  \"timestamp\": \"2026-07-20T15:45:30Z\",\r\n  \"customerName\": \"Rajesh Kumar\",\r\n  \"sourceBank\": \"Bank of Baroda\",\r\n  \"beneficiaryBank\": \"HDFC Bank\",\r\n  \"amount\": {{amount}},\r\n  \"currency\": \"INR\",\r\n  \"transactionType\": \"UPI\",\r\n  \"referenceNumber\": \"UPI202607200001\",\r\n  \"processingTime\": \"92 ms\",\r\n  \"nextStep\": \"Transaction Status\",\r\n  \"message\": \"Transaction initiated successfully.\"\r\n}"
+                }
+              ]
+            },
+            {
+              "name": "Transaction Status",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Transaction status successful\", function () {\r",
+                      "    pm.expect(pm.response.code).to.be.oneOf([200,202]);\r",
+                      "});\r",
+                      "\r",
+                      "if(pm.response.code!==200){\r",
+                      "    return;\r",
+                      "}\r",
+                      "\r",
+                      "let response=pm.response.json();\r",
+                      "\r",
+                      "pm.environment.set(\"transactionId\",response.transactionId);\r",
+                      "\r",
+                      "pm.environment.set(\"status\",response.status);\r",
+                      "\r",
+                      "pm.environment.set(\"transactionStatus\",response.transactionStatus);\r",
+                      "\r",
+                      "pm.environment.set(\"transactionMessage\",response.message);\r",
+                      "\r",
+                      "let timeline=JSON.parse(pm.environment.get(\"timeline\")||\"[]\");\r",
+                      "\r",
+                      "timeline.push({\r",
+                      "\r",
+                      "    time:new Date().toLocaleTimeString(),\r",
+                      "\r",
+                      "    module:\"Transaction Service\",\r",
+                      "\r",
+                      "    event:\"Transaction Completed\",\r",
+                      "\r",
+                      "    status:response.transactionStatus\r",
+                      "\r",
+                      "});\r",
+                      "\r",
+                      "pm.environment.set(\"timeline\",JSON.stringify(timeline));\r",
+                      "postman.setNextRequest(\"Gateway Health\");"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/transaction/status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transaction",
+                    "status"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Transaction Status Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"customerName\": \"Rajesh Kumar\",\r\n    \"mobile\": \"9876543210\",\r\n    \"sourceBank\": \"Bank of Baroda\",\r\n    \"beneficiaryBank\": \"HDFC Bank\",\r\n    \"amount\": 25000,\r\n    \"currency\": \"INR\",\r\n    \"transactionType\": \"UPI\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transaction/status",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transaction",
+                        "status"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": null,
+                  "header": null,
+                  "cookie": [],
+                  "body": "{\r\n    \"requestId\": \"REQ-202607200002\",\r\n    \"transactionId\": \"TXN100003\",\r\n    \"status\": \"SUCCESS\",\r\n    \"service\": \"Transaction Status Service\",\r\n    \"timestamp\": \"2026-07-20T10:45:00\",\r\n    \"amount\": 10000,\r\n    \"currency\": \"INR\",\r\n    \"failureType\": \"NONE\",\r\n    \"nextStep\": \"API Health Monitor\"\r\n}"
+                }
+              ]
+            },
+            {
+              "name": "Transaction Reversal",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Transaction Reversal Completed\", function () {\r",
+                      "    pm.expect(pm.response.code).to.be.oneOf([200,202]);\r",
+                      "});\r",
+                      "\r",
+                      "if(pm.response.code===200){\r",
+                      "\r",
+                      "    let response=pm.response.json();\r",
+                      "\r",
+                      "    pm.environment.set(\"reversalStatus\",response.reversalStatus||\"SUCCESS\");\r",
+                      "\r",
+                      "    let timeline=JSON.parse(pm.environment.get(\"timeline\")||\"[]\");\r",
+                      "\r",
+                      "    timeline.push({\r",
+                      "\r",
+                      "        time:new Date().toLocaleTimeString(),\r",
+                      "\r",
+                      "        module:\"Transaction Reversal\",\r",
+                      "\r",
+                      "        event:\"Transaction Reversed\",\r",
+                      "\r",
+                      "        status:pm.environment.get(\"reversalStatus\")\r",
+                      "\r",
+                      "    });\r",
+                      "\r",
+                      "    pm.environment.set(\"timeline\",JSON.stringify(timeline));\r",
+                      "\r",
+                      "}\r",
+                      "\r",
+                      "postman.setNextRequest(\"Health Check\");"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"transactionId\": \"{{transactionId}}\",\r\n  \"reason\": \"Beneficiary Timeout\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/transaction/reversal",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transaction",
+                    "reversal"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Transaction Reversal Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\r\n    \"transactionId\": \"TXN100001\",\r\n    \"reason\": \"Duplicate Transaction\",\r\n    \"requestedBy\": \"API Sentinel\",\r\n    \"remarks\": \"Auto reversal initiated by Automation Executor\"\r\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "https://bec29160-0ca6-40e7-a898-1776864b428f.mock.pstmn.io/transaction/reversal",
+                      "protocol": "https",
+                      "host": [
+                        "bec29160-0ca6-40e7-a898-1776864b428f",
+                        "mock",
+                        "pstmn",
+                        "io"
+                      ],
+                      "path": [
+                        "transaction",
+                        "reversal"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": null,
+                  "header": null,
+                  "cookie": [],
+                  "body": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Health Check",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Health Check Completed\", function () {\r",
+                  "    pm.expect(true).to.be.true;\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"apiHealth\",\"UP\");\r",
+                  "\r",
+                  "let timeline=JSON.parse(pm.environment.get(\"timeline\")||\"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "\r",
+                  "    time:new Date().toLocaleTimeString(),\r",
+                  "\r",
+                  "    module:\"Health Check\",\r",
+                  "\r",
+                  "    event:\"Gateway Health Verified\",\r",
+                  "\r",
+                  "    status:\"UP\"\r",
+                  "\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\",JSON.stringify(timeline));\r",
+                  "\r",
+                  "postman.setNextRequest(\"Gateway Health\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://postman-echo.com/get",
+              "protocol": "https",
+              "host": [
+                "postman-echo",
+                "com"
+              ],
+              "path": [
+                "get"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Health Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "",
+                    "value": "",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "https://api-sentinel.mock/health",
+                  "protocol": "https",
+                  "host": [
+                    "api-sentinel",
+                    "mock"
+                  ],
+                  "path": [
+                    "health"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": "{\r\n    \"status\": \"UP\",\r\n    \"platform\": \"API Sentinel\",\r\n    \"version\": \"1.0\",\r\n    \"timestamp\": \"{{$timestamp}}\"\r\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "02 API Health Monitor",
+      "item": [
+        {
+          "name": "Gateway Health",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Gateway Health Retrieved\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"gatewayStatus\", response.gatewayStatus);\r",
+                  "pm.environment.set(\"gatewayAvailability\", response.availability);\r",
+                  "pm.environment.set(\"gatewayResponseTime\", response.responseTime);\r",
+                  "pm.environment.set(\"gatewayHealthScore\", response.healthScore);\r",
+                  "pm.environment.set(\"gatewayRecommendation\", response.recommendation);\r",
+                  "\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: response.module,\r",
+                  "    api: response.apiName,\r",
+                  "    status: response.status,\r",
+                  "    recommendation: response.recommendation\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "\r",
+                  "pm.execution.setNextRequest(\"Transaction API Health\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://192.168.10.40:8080/health/gateway",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "health",
+                "gateway"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Gateway Health",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "GET {{baseUrl}}/health/gateway",
+                  "host": [
+                    "GET {{baseUrl}}"
+                  ],
+                  "path": [
+                    "health",
+                    "gateway"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\r\n    \"gatewayName\": \"Broadcom Layer7 Gateway\",\r\n    \"status\": \"HEALTHY\",\r\n    \"availability\": \"99.98%\",\r\n    \"cpuUsage\": \"18%\",\r\n    \"memoryUsage\": \"42%\",\r\n    \"responseTime\": \"145 ms\",\r\n    \"checkedAt\": \"2026-07-23T10:30:00\",\r\n    \"message\": \"Gateway is operating normally.\"\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Transaction API Health",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Transaction API Health Retrieved\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "// Store values for future modules\r",
+                  "pm.environment.set(\"transactionAPI\", response.transactionAPI);\r",
+                  "pm.environment.set(\"transactionStatus\", response.status);\r",
+                  "pm.environment.set(\"transactionSuccessRate\", response.successRate);\r",
+                  "pm.environment.set(\"transactionAverageResponseTime\", response.averageResponseTime);\r",
+                  "pm.environment.set(\"transactionAvailability\", response.availability);\r",
+                  "pm.environment.set(\"activeConnections\", response.activeConnections);\r",
+                  "pm.environment.set(\"failedRequests\", response.failedRequests);\r",
+                  "\r",
+                  "// Timeline\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: response.module,\r",
+                  "    api: response.apiName,\r",
+                  "    status: response.status,\r",
+                  "    recommendation: response.recommendation\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "\r",
+                  "// Continue existing flow\r",
+                  "pm.execution.setNextRequest(\"Health Summary\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://192.168.10.40:8080/health/transaction",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "health",
+                "transaction"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Transaction API Health",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/health/transaction",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "health",
+                    "transaction"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\r\n    \"apiName\": \"Transaction API\",\r\n    \"status\": \"HEALTHY\",\r\n    \"requestsToday\": 1250,\r\n    \"successRate\": \"99.5%\",\r\n    \"averageLatency\": \"210 ms\",\r\n    \"errorRate\": \"0.5%\",\r\n    \"message\": \"Transaction API is responding normally.\"\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Health Summary",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Health Summary Retrieved\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"overallHealth\", response.overallHealth);\r",
+                  "pm.environment.set(\"overallHealthScore\", response.healthScore);\r",
+                  "pm.environment.set(\"overallAvailability\", response.availability);\r",
+                  "pm.environment.set(\"overallStatus\", response.overallStatus);\r",
+                  "\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: response.module,\r",
+                  "    api: response.apiName,\r",
+                  "    status: response.overallStatus,\r",
+                  "    recommendation: response.recommendation\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "\r",
+                  "pm.execution.setNextRequest(\"Latency Report\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://192.168.10.40:8080/health/summary",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "health",
+                "summary"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Health Summary",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/health/summary",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "health",
+                    "summary"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\r\n    \"gateway\":\"HEALTHY\",\r\n    \"transactionAPI\":\"HEALTHY\",\r\n    \"database\":\"HEALTHY\",\r\n    \"overallStatus\":\"GREEN\",\r\n    \"availability\":\"99.98%\",\r\n    \"message\":\"All monitored services are operational.\"\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Latency Report",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Latency Report Ready\", function () {\r",
+                  "    pm.expect(true).to.be.true;\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"averageLatency\",\"210 ms\");\r",
+                  "pm.environment.set(\"maximumLatency\",\"430 ms\");\r",
+                  "\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: \"API Health Monitor\",\r",
+                  "    event: \"Latency Report Generated\",\r",
+                  "    status: \"SUCCESS\"\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "postman.setNextRequest(\"Analyze Failure\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://192.168.10.40:8080/health/latency",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "health",
+                "latency"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Latency Report",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/health/latency",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "health",
+                    "latency"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\r\n    \"averageLatency\":\"210 ms\",\r\n    \"minimumLatency\":\"120 ms\",\r\n    \"maximumLatency\":\"430 ms\",\r\n    \"gatewayResponse\":\"NORMAL\",\r\n    \"status\":\"SUCCESS\"\r\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "03 Root Cause Analyzer",
+      "item": [
+        {
+          "name": "Analyze Failure",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Analyze Failure Retrieved\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"failureDetected\", response.failureDetected);\r",
+                  "pm.environment.set(\"failureType\", response.failureType);\r",
+                  "pm.environment.set(\"rootCause\", response.rootCause);\r",
+                  "pm.environment.set(\"affectedAPI\", response.affectedAPI);\r",
+                  "pm.environment.set(\"severity\", response.severity);\r",
+                  "pm.environment.set(\"confidence\", response.confidence);\r",
+                  "\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: response.module,\r",
+                  "    api: response.apiName,\r",
+                  "    status: response.severity,\r",
+                  "    recommendation: response.recommendation\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "\r",
+                  "pm.execution.setNextRequest(\"Failure Statistics\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://192.168.10.40:8080/analysis/rootcause",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "analysis",
+                "rootcause"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Analyze Failure",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/analysis/rootcause",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "analysis",
+                    "rootcause"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\r\n    \"transactionId\": \"TXN100001\",\r\n    \"failureType\": \"Duplicate Transaction\",\r\n    \"rootCause\": \"Duplicate request received within 5 seconds.\",\r\n    \"severity\": \"HIGH\",\r\n    \"recommendation\": \"Reverse duplicate transaction.\",\r\n    \"nextStep\": \"Risk & Decision Engine\",\r\n    \"analysisStatus\": \"COMPLETED\"\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Failure Statistics",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Failure Statistics Retrieved\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"totalFailures\", response.totalFailures);\r",
+                  "pm.environment.set(\"duplicateTransactions\", response.duplicateTransactions);\r",
+                  "pm.environment.set(\"timeoutFailures\", response.timeoutFailures);\r",
+                  "pm.environment.set(\"gatewayFailures\", response.gatewayFailures);\r",
+                  "pm.environment.set(\"systemFailures\", response.systemFailures);\r",
+                  "pm.environment.set(\"mostFrequentFailure\", response.mostFrequentFailure);\r",
+                  "\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: response.module,\r",
+                  "    api: response.apiName,\r",
+                  "    status: \"COMPLETED\",\r",
+                  "    recommendation: response.recommendation\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "\r",
+                  "pm.execution.setNextRequest(\"Failure History\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://192.168.10.40:8080/analysis/statistics",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "analysis",
+                "statistics"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Failure Statistics",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/analysis/statistics",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "analysis",
+                    "statistics"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\r\n    \"totalFailures\":18,\r\n    \"duplicateTransactions\":6,\r\n    \"beneficiaryTimeout\":8,\r\n    \"fraudDetected\":2,\r\n    \"others\":2,\r\n    \"status\":\"SUCCESS\"\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Failure History",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Failure History Ready\", function () {\r",
+                  "    pm.expect(true).to.be.true;\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"historyLoaded\",\"YES\");\r",
+                  "\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: \"Root Cause Analyzer\",\r",
+                  "    event: \"Failure History Loaded\",\r",
+                  "    status: \"SUCCESS\"\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "postman.setNextRequest(\"Evaluate Risk\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://192.168.10.40:8080/analysis/history",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "analysis",
+                "history"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Failure History",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/analysis/history",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "analysis",
+                    "history"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\r\n    \"history\":[\r\n        {\r\n            \"transactionId\":\"TXN100001\",\r\n            \"failure\":\"Duplicate Transaction\",\r\n            \"date\":\"2026-07-23\"\r\n        },\r\n        {\r\n            \"transactionId\":\"TXN100002\",\r\n            \"failure\":\"Beneficiary Timeout\",\r\n            \"date\":\"2026-07-23\"\r\n        }\r\n    ],\r\n    \"status\":\"SUCCESS\"\r\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "04 Risk & Decision Engine",
+      "item": [
+        {
+          "name": "Evaluate Risk",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Evaluate Risk Retrieved\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"riskScore\", response.riskScore);\r",
+                  "pm.environment.set(\"riskLevel\", response.riskLevel);\r",
+                  "pm.environment.set(\"businessImpact\", response.businessImpact);\r",
+                  "pm.environment.set(\"decision\", response.decision);\r",
+                  "pm.environment.set(\"recommendedAction\", response.recommendedAction);\r",
+                  "\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: response.module,\r",
+                  "    api: response.apiName,\r",
+                  "    status: response.riskLevel,\r",
+                  "    recommendation: response.recommendedAction\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "\r",
+                  "pm.execution.setNextRequest(\"Execute Automation\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://192.168.10.40:8080/transaction/risk",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "transaction",
+                "risk"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Risk Decision Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/transaction/risk",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transaction",
+                    "risk"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": "{\r\n    \"requestId\": \"REQ-202607200005\",\r\n    \"severity\": \"LOW\",\r\n    \"riskLevel\": \"LOW\",\r\n    \"decision\": \"APPROVED\",\r\n    \"recommendation\": \"Transaction can be processed safely.\",\r\n    \"nextStep\": \"Automation Executor\",\r\n    \"message\": \"Risk evaluation completed successfully.\"\r\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "05 Automation Executor",
+      "item": [
+        {
+          "name": "Execute Automation",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Execute Automation Retrieved\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"automationStatus\", response.automationStatus);\r",
+                  "pm.environment.set(\"executionType\", response.executionType);\r",
+                  "pm.environment.set(\"actionPerformed\", response.actionPerformed);\r",
+                  "pm.environment.set(\"executionTime\", response.executionTime);\r",
+                  "pm.environment.set(\"retryCount\", response.retryCount);\r",
+                  "pm.environment.set(\"automationResult\", response.result);\r",
+                  "\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: response.module,\r",
+                  "    api: response.apiName,\r",
+                  "    status: response.automationStatus,\r",
+                  "    recommendation: response.recommendation\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "\r",
+                  "pm.execution.setNextRequest(\"Automation Status\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://192.168.10.40:8080/automation/execute",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "automation",
+                "execute"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Automation Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/transaction/automation",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transaction",
+                    "automation"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": "{\r\n    \"requestId\": \"AUTO-20260722001\",\r\n    \"decision\": \"APPROVED\",\r\n    \"action\": \"AUTO_PROCESS\",\r\n    \"executionStatus\": \"SUCCESS\",\r\n    \"message\": \"Automation executed successfully.\",\r\n    \"nextStep\": \"Compliance Dashboard\"\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Automation Status",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Automation Status Retrieved\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"automationCurrentStatus\", response.status);\r",
+                  "pm.environment.set(\"currentStage\", response.currentStage);\r",
+                  "pm.environment.set(\"executionResult\", response.executionResult);\r",
+                  "pm.environment.set(\"completedActions\", response.completedActions);\r",
+                  "pm.environment.set(\"pendingActions\", response.pendingActions);\r",
+                  "\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: response.module,\r",
+                  "    api: response.apiName,\r",
+                  "    status: response.status,\r",
+                  "    recommendation: response.recommendation\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "\r",
+                  "pm.execution.setNextRequest(\"Retry Transaction\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://192.168.10.40:8080/automation/status",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "automation",
+                "status"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Automation Status Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/automation/status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "automation",
+                    "status"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                }
+              ],
+              "cookie": [],
+              "body": "{\r\n    \"automationId\": \"AUTO-20260722001\",\r\n    \"status\": \"COMPLETED\",\r\n    \"executionStatus\": \"SUCCESS\",\r\n    \"completedAt\": \"2026-07-22T17:45:00\",\r\n    \"nextModule\": \"Compliance Dashboard\",\r\n    \"message\": \"Automation completed successfully.\"\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Retry Transaction",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let scenario = pm.environment.get(\"scenario\");\r",
+                  "\r",
+                  "if (scenario === \"BENEFICIARY_TIMEOUT\") {\r",
+                  "\r",
+                  "    pm.environment.set(\"retryStatus\", \"SUCCESS\");\r",
+                  "\r",
+                  "} else {\r",
+                  "\r",
+                  "    pm.environment.set(\"retryStatus\", \"NOT_REQUIRED\");\r",
+                  "\r",
+                  "}\r",
+                  "\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "\r",
+                  "    module: \"Automation Executor\",\r",
+                  "\r",
+                  "    event: \"Retry Evaluation\",\r",
+                  "\r",
+                  "    status: pm.environment.get(\"retryStatus\")\r",
+                  "\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "\r",
+                  "postman.setNextRequest(\"Escalate Incident\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://192.168.10.40:8080/automation/retry",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "automation",
+                "retry"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Retry Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/automation/retry",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "automation",
+                    "retry"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": "{\r\n    \"requestId\":\"AUTO-0002\",\r\n    \"retryCount\":1,\r\n    \"executionStatus\":\"RETRY_SUCCESS\",\r\n    \"message\":\"Transaction retried successfully.\",\r\n    \"nextStep\":\"Compliance Dashboard\"\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Escalate Incident",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Escalate Incident Retrieved\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"escalationRequired\", response.escalationRequired);\r",
+                  "pm.environment.set(\"escalationStatus\", response.escalationStatus);\r",
+                  "pm.environment.set(\"assignedTeam\", response.assignedTeam);\r",
+                  "pm.environment.set(\"priority\", response.priority);\r",
+                  "pm.environment.set(\"ticketId\", response.ticketId);\r",
+                  "\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: response.module,\r",
+                  "    api: response.apiName,\r",
+                  "    status: response.escalationStatus,\r",
+                  "    recommendation: response.recommendation\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "\r",
+                  "pm.execution.setNextRequest(\"Reverse Transaction\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://192.168.10.40:8080/automation/escalate",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "automation",
+                "escalate"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Escalation Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/automation/escalate",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "automation",
+                    "escalate"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": "{\r\n    \"incidentId\":\"INC10001\",\r\n    \"severity\":\"CRITICAL\",\r\n    \"executionStatus\":\"ESCALATED\",\r\n    \"assignedTeam\":\"SOC Team\",\r\n    \"message\":\"Incident escalated successfully.\"\r\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "06 Execute Reversal",
+      "item": [
+        {
+          "name": "Reverse Transaction",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Reverse Transaction Retrieved\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"reversalRequired\", response.reversalRequired);\r",
+                  "pm.environment.set(\"reversalStatus\", response.reversalStatus);\r",
+                  "pm.environment.set(\"transactionId\", response.transactionId);\r",
+                  "pm.environment.set(\"reversalReference\", response.reversalReference);\r",
+                  "pm.environment.set(\"reversalReason\", response.reason);\r",
+                  "\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: response.module,\r",
+                  "    api: response.apiName,\r",
+                  "    status: response.reversalStatus,\r",
+                  "    recommendation: response.recommendation\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "\r",
+                  "pm.execution.setNextRequest(\"Reversal Status\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"transactionId\":\"{{transactionId}}\",\r\n    \"reason\":\"{{failureType}}\",\r\n    \"decision\":\"{{decision}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://192.168.10.40:8080/transaction/reversal",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "transaction",
+                "reversal"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Reversal Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/transaction/reversal",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transaction",
+                    "reversal"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": "{\r\n    \"reversalId\":\"REV-202607230001\",\r\n    \"transactionId\":\"TXN100001\",\r\n    \"reversalStatus\":\"SUCCESS\",\r\n    \"message\":\"Transaction reversed successfully.\",\r\n    \"nextStep\":\"Compliance Dashboard\"\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Reversal Status",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Reversal Status Retrieved\", function () {\r",
+                  "    pm.expect(true).to.be.true;\r",
+                  "});\r",
+                  "\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "\r",
+                  "    module: \"Execute Reversal\",\r",
+                  "\r",
+                  "    event: \"Reversal Status\",\r",
+                  "\r",
+                  "    status: pm.environment.get(\"reversalStatus\")\r",
+                  "\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "\r",
+                  "postman.setNextRequest(\"Reversal Audit\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://192.168.10.40:8080/reversal/status",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "reversal",
+                "status"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Reversal Status",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/reversal/status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reversal",
+                    "status"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\r\n    \"reversalId\":\"REV-202607230001\",\r\n    \"status\":\"COMPLETED\",\r\n    \"completedAt\":\"2026-07-23T11:45:00\",\r\n    \"message\":\"Reversal completed successfully.\"\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Reversal Audit",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Reversal Audit Retrieved\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"auditStatus\", response.auditStatus);\r",
+                  "pm.environment.set(\"auditResult\", response.auditResult);\r",
+                  "pm.environment.set(\"auditedBy\", response.auditedBy);\r",
+                  "pm.environment.set(\"auditTime\", response.auditTime);\r",
+                  "pm.environment.set(\"compliance\", response.compliance);\r",
+                  "\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: response.module,\r",
+                  "    api: response.apiName,\r",
+                  "    status: response.auditStatus,\r",
+                  "    recommendation: response.recommendation\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "\r",
+                  "pm.execution.setNextRequest(\"Compliance Status\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://192.168.10.40:8080/reversal/audit",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "reversal",
+                "audit"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Reversal Audit",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/reversal/audit",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reversal",
+                    "audit"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\r\n    \"auditId\":\"AUD-10001\",\r\n    \"auditStatus\":\"VERIFIED\",\r\n    \"verifiedBy\":\"API Sentinel\",\r\n    \"message\":\"Reversal audit completed successfully.\"\r\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "07 Compliance & Audit Dashboard",
+      "item": [
+        {
+          "name": "Compliance Status",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Compliance Status Retrieved\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"complianceStatus\", response.complianceStatus);\r",
+                  "pm.environment.set(\"policyValidation\", response.policyValidation);\r",
+                  "pm.environment.set(\"regulatoryStatus\", response.regulatoryStatus);\r",
+                  "pm.environment.set(\"violations\", response.violations);\r",
+                  "pm.environment.set(\"riskRating\", response.riskRating);\r",
+                  "\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: response.module,\r",
+                  "    api: response.apiName,\r",
+                  "    status: response.complianceStatus,\r",
+                  "    recommendation: response.recommendation\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "\r",
+                  "pm.execution.setNextRequest(\"Audit Summary\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://192.168.10.40:8080/compliance/status",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "compliance",
+                "status"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Compliance Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "GET {{baseUrl}}/compliance/status",
+                  "host": [
+                    "GET {{baseUrl}}"
+                  ],
+                  "path": [
+                    "compliance",
+                    "status"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": "{\r\n    \"complianceId\":\"CMP-202607230001\",\r\n    \"status\":\"COMPLIANT\",\r\n    \"policy\":\"Banking Transaction Policy\",\r\n    \"verifiedBy\":\"API Sentinel\",\r\n    \"message\":\"Transaction complies with all security policies.\",\r\n    \"nextStep\":\"Audit Dashboard\"\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Audit Summary",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Audit Summary Retrieved\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"totalAudits\", response.totalAudits);\r",
+                  "pm.environment.set(\"passedAudits\", response.passedAudits);\r",
+                  "pm.environment.set(\"failedAudits\", response.failedAudits);\r",
+                  "pm.environment.set(\"auditScore\", response.auditScore);\r",
+                  "pm.environment.set(\"overallAuditStatus\", response.overallStatus);\r",
+                  "\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: response.module,\r",
+                  "    api: response.apiName,\r",
+                  "    status: response.overallStatus,\r",
+                  "    recommendation: response.recommendation\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "\r",
+                  "pm.execution.setNextRequest(\"Audit Trail\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://192.168.10.40:8080/audit/summary",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "audit",
+                "summary"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Audit Summary",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/audit/summary",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "audit",
+                    "summary"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\r\n    \"auditId\":\"AUD-202607230001\",\r\n    \"auditStatus\":\"SUCCESS\",\r\n    \"totalChecks\":12,\r\n    \"passedChecks\":12,\r\n    \"failedChecks\":0,\r\n    \"message\":\"Audit completed successfully.\"\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Audit Trail",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Audit Trail Retrieved\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"auditId\", response.auditId);\r",
+                  "pm.environment.set(\"auditEvent\", response.auditEvent);\r",
+                  "pm.environment.set(\"performedBy\", response.performedBy);\r",
+                  "pm.environment.set(\"eventTime\", response.eventTime);\r",
+                  "pm.environment.set(\"auditTrailStatus\", response.auditStatus);\r",
+                  "\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: response.module,\r",
+                  "    api: response.apiName,\r",
+                  "    status: response.auditStatus,\r",
+                  "    recommendation: response.recommendation\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "\r",
+                  "pm.execution.setNextRequest(\"Generate Dashboard\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://192.168.10.40:8080/audit/trail",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "audit",
+                "trail"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Audit Trail",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/audit/trail",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "audit",
+                    "trail"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\r\n    \"transactionId\":\"TXN100001\",\r\n    \"workflow\":[\r\n        \"Transaction Initiated\",\r\n        \"Gateway Health Verified\",\r\n        \"Root Cause Analysis\",\r\n        \"Risk Evaluation\",\r\n        \"Automation Executed\",\r\n        \"Transaction Reversed\",\r\n        \"Compliance Verified\"\r\n    ],\r\n    \"status\":\"SUCCESS\"\r\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "08 Business KPI Dashboard",
+      "item": [
+        {
+          "name": "Generate Dashboard",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Dashboard Generated\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"dashboardStatus\", response.dashboardStatus);\r",
+                  "pm.environment.set(\"totalTransactions\", response.totalTransactions);\r",
+                  "pm.environment.set(\"successfulTransactions\", response.successfulTransactions);\r",
+                  "pm.environment.set(\"failedTransactions\", response.failedTransactions);\r",
+                  "pm.environment.set(\"overallHealth\", response.overallHealth);\r",
+                  "\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: response.module,\r",
+                  "    api: response.apiName,\r",
+                  "    status: response.dashboardStatus,\r",
+                  "    recommendation: response.recommendation\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "\r",
+                  "pm.execution.setNextRequest(\"Evaluate Alert\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://192.168.10.40:8080/dashboard",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "dashboard"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Dashboard Success Example",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/transaction/dashboard",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transaction",
+                    "dashboard"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"requestId\": \"REQ-202607200008\",\n    \"transactionId\": \"TXN100003\",\n    \"status\": \"SUCCESS\",\n    \"apiHealth\": \"UP\",\n    \"riskLevel\": \"LOW\",\n    \"decision\": \"APPROVED\",\n    \"executionStatus\": \"EXECUTED\",\n    \"auditStatus\": \"LOGGED\",\n    \"complianceStatus\": \"COMPLIANT\",\n    \"overallHealth\": \"HEALTHY\",\n    \"timeline\": [\n        {\n            \"time\": \"10:45:07 AM\",\n            \"module\": \"Transaction Service\",\n            \"event\": \"Transaction Initiated\",\n            \"status\": \"SUCCESS\"\n        },\n        {\n            \"time\": \"10:45:12 AM\",\n            \"module\": \"API Health Monitor\",\n            \"event\": \"Health Check Completed\",\n            \"status\": \"HEALTHY\"\n        },\n        {\n            \"time\": \"10:45:16 AM\",\n            \"module\": \"Root Cause Analyzer\",\n            \"event\": \"Root Cause Analysis Completed\",\n            \"status\": \"No issue detected\"\n        },\n        {\n            \"time\": \"10:45:19 AM\",\n            \"module\": \"Risk Decision Engine\",\n            \"event\": \"Risk Evaluation Completed\",\n            \"status\": \"APPROVED\"\n        },\n        {\n            \"time\": \"10:45:22 AM\",\n            \"module\": \"Automation Executor\",\n            \"event\": \"Automation Executed\",\n            \"status\": \"EXECUTED\"\n        },\n        {\n            \"time\": \"10:45:25 AM\",\n            \"module\": \"Compliance & Audit\",\n            \"event\": \"Audit Logged\",\n            \"status\": \"LOGGED\"\n        }\n    ],\n    \"message\": \"Business KPI Dashboard generated successfully.\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "09 Alert Manager",
+      "item": [
+        {
+          "name": "Evaluate Alert",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Evaluate Alert Retrieved\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"alertRequired\", response.alertRequired);\r",
+                  "pm.environment.set(\"alertSeverity\", response.alertSeverity);\r",
+                  "pm.environment.set(\"alertType\", response.alertType);\r",
+                  "pm.environment.set(\"affectedService\", response.affectedService);\r",
+                  "pm.environment.set(\"alertStatus\", response.alertStatus);\r",
+                  "\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: response.module,\r",
+                  "    api: response.apiName,\r",
+                  "    status: response.alertStatus,\r",
+                  "    recommendation: response.recommendation\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "\r",
+                  "pm.execution.setNextRequest(\"Alert Status\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://192.168.10.40:8080/alert/evaluate",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "alert",
+                "evaluate"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Alert Evaluation",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/transaction/alert",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transaction",
+                    "alert"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": "{\r\n    \"alertId\":\"ALT-202607230001\",\r\n    \"status\":\"SUCCESS\",\r\n    \"alertRequired\":\"YES\",\r\n    \"alertLevel\":\"HIGH\",\r\n    \"recipient\":\"operations@bank.com\",\r\n    \"subject\":\"High Value Transaction Alert\",\r\n    \"message\":\"Alert evaluated successfully.\",\r\n    \"nextStep\":\"Email Notification\"\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Alert Status",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Alert Status Retrieved\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"alertId\", response.alertId);\r",
+                  "pm.environment.set(\"alertStatus\", response.status);\r",
+                  "pm.environment.set(\"deliveryStatus\", response.deliveryStatus);\r",
+                  "pm.environment.set(\"recipient\", response.recipient);\r",
+                  "pm.environment.set(\"acknowledged\", response.acknowledged);\r",
+                  "\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: response.module,\r",
+                  "    api: response.apiName,\r",
+                  "    status: response.status,\r",
+                  "    recommendation: response.recommendation\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "\r",
+                  "pm.execution.setNextRequest(\"Alert History\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://192.168.10.40:8080/alert/status",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "alert",
+                "status"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Alert Status Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/alert/status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "alert",
+                    "status"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": "{\r\n    \"alertId\":\"ALT-202607230001\",\r\n    \"status\":\"TRIGGERED\",\r\n    \"alertLevel\":\"HIGH\",\r\n    \"recipient\":\"operations@bank.com\",\r\n    \"acknowledged\":\"NO\",\r\n    \"message\":\"Alert is active.\"\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Alert History",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Alert History Retrieved\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"totalAlerts\", response.totalAlerts);\r",
+                  "pm.environment.set(\"resolvedAlerts\", response.resolvedAlerts);\r",
+                  "pm.environment.set(\"activeAlerts\", response.activeAlerts);\r",
+                  "pm.environment.set(\"lastAlertType\", response.lastAlertType);\r",
+                  "pm.environment.set(\"trend\", response.trend);\r",
+                  "\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: response.module,\r",
+                  "    api: response.apiName,\r",
+                  "    status: response.trend,\r",
+                  "    recommendation: response.recommendation\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "\r",
+                  "pm.execution.setNextRequest(\"Email Notification\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://192.168.10.40:8080/alert/history",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "alert",
+                "history"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Alert History Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/alert/history?Accept=application/json",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "alert",
+                    "history"
+                  ],
+                  "query": [
+                    {
+                      "key": "Accept",
+                      "value": "application/json"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": "{\r\n    \"history\":[\r\n        {\r\n            \"alertId\":\"ALT-202607230001\",\r\n            \"level\":\"HIGH\",\r\n            \"status\":\"TRIGGERED\",\r\n            \"time\":\"10:45 AM\"\r\n        },\r\n        {\r\n            \"alertId\":\"ALT-202607230002\",\r\n            \"level\":\"LOW\",\r\n            \"status\":\"CLOSED\",\r\n            \"time\":\"09:30 AM\"\r\n        }\r\n    ],\r\n    \"status\":\"SUCCESS\"\r\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "10 Email Notification",
+      "item": [
+        {
+          "name": "Email Notification",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Email Notification Sent\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"notificationStatus\", response.notificationStatus);\r",
+                  "pm.environment.set(\"recipient\", response.recipient);\r",
+                  "pm.environment.set(\"subject\", response.subject);\r",
+                  "pm.environment.set(\"messageId\", response.messageId);\r",
+                  "\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "    time: new Date().toLocaleTimeString(),\r",
+                  "    module: response.module,\r",
+                  "    api: response.apiName,\r",
+                  "    status: response.notificationStatus,\r",
+                  "    recommendation: response.recommendation\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\", JSON.stringify(timeline));\r",
+                  "\r",
+                  "pm.execution.setNextRequest(\"Notification Status\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"recipient\":\"{{recipient}}\",\r\n    \"subject\":\"{{emailSubject}}\",\r\n    \"transactionId\":\"{{transactionId}}\",\r\n    \"alertLevel\":\"{{alertLevel}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://192.168.10.40:8080/notification/send",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "notification",
+                "send"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Email Sent Successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/transaction/email",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transaction",
+                    "email"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "",
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Mon, 20 Jul 2026 09:07:16 GMT",
+                  "uuid": "5d8467a1-8068-4ce6-b3f3-847ce7527748"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8",
+                  "uuid": "bae271a0-c817-4b98-8f73-0131888f7126"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked",
+                  "uuid": "d1bcb9d9-5ecd-467b-a6a1-47f455283194"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive",
+                  "uuid": "7df4e484-c51c-4506-a60e-a20f5ed04c6e"
+                },
+                {
+                  "key": "x-srv-trace",
+                  "value": "v=1;t=e8cf96b8d61024f9",
+                  "uuid": "ae109162-a1b2-4e76-8c2e-98cbca74e990"
+                },
+                {
+                  "key": "x-srv-span",
+                  "value": "v=1;s=7a8f09b4854f5b31",
+                  "uuid": "daf2cb8d-04f8-4937-b249-b0a5187f1ee7"
+                },
+                {
+                  "key": "access-control-allow-origin",
+                  "value": "*",
+                  "uuid": "613d3a8e-dd6e-43f0-a6b6-4daee390f192"
+                },
+                {
+                  "key": "x-ratelimit-limit",
+                  "value": "120",
+                  "uuid": "30759af6-dc24-4c2c-b62a-25e175086e1d"
+                },
+                {
+                  "key": "x-ratelimit-remaining",
+                  "value": "118",
+                  "uuid": "265f865f-afd7-44f7-82ed-c7399abebdaf"
+                },
+                {
+                  "key": "x-ratelimit-reset",
+                  "value": "1784538451",
+                  "uuid": "0d030b1d-e52f-4286-8b70-f434de605188"
+                },
+                {
+                  "key": "etag",
+                  "value": "W/\"f3-HBiIyJWUHUWX/oPT7Emp7x0Nxms\"",
+                  "uuid": "1773e3ac-9bfe-4888-971d-b5bb2684d72d"
+                },
+                {
+                  "key": "vary",
+                  "value": "Accept-Encoding",
+                  "uuid": "4df91e1f-07e6-4ecb-bfba-8e2402cb0921"
+                },
+                {
+                  "key": "set-cookie",
+                  "value": "__cf_bm=8wqS_wyQrC6UZUg6quwNMPXqIpkoiXv4zLb6UKJ6JlQ-1784538436.1021578-1.0.1.1-mPjG_ATGJQAYjvKKy11CiLShHEGYFO1tt3eso9GxMMjZCl25Yeb4uhI7J.jzBvoVS8jBjnBsD1ARiMs4aS0M0bBDtp8F.CTc7JFJTCoI_0Gjalphcn5Hqu_XY0aJIlgo; HttpOnly; SameSite=None; Secure; Path=/; Domain=pstmn.io; Expires=Mon, 20 Jul 2026 09:37:16 GMT",
+                  "uuid": "46e6654a-dd67-48e8-974d-b7a07fd62b76"
+                },
+                {
+                  "key": "cf-cache-status",
+                  "value": "DYNAMIC",
+                  "uuid": "69a69321-2eb7-4a1b-a008-14f67b96005b"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "gzip",
+                  "uuid": "f3ec3e1b-0130-4c0d-bcc4-5408cd45986c"
+                },
+                {
+                  "key": "Server",
+                  "value": "cloudflare",
+                  "uuid": "e2431d7e-434d-4d0f-91b9-6a9f49c9f1ce"
+                },
+                {
+                  "key": "CF-RAY",
+                  "value": "a1e0d089ad3c8678-IAD",
+                  "uuid": "8fdb98df-54e4-47b9-828f-82d7262558eb"
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\n    \"notificationId\":\"MAIL-202607230001\",\n    \"recipient\":\"operations@bank.com\",\n    \"status\":\"SENT\",\n    \"deliveryTime\":\"2026-07-23T11:55:00\",\n    \"message\":\"Email notification sent successfully.\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Notification Status",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Notification Status Retrieved\", function () {\r",
+                  "    pm.expect(true).to.be.true;\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"notificationStatus\",\"DELIVERED\");\r",
+                  "\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "\r",
+                  "    time:new Date().toLocaleTimeString(),\r",
+                  "\r",
+                  "    module:\"Email Notification\",\r",
+                  "\r",
+                  "    event:\"Notification Delivered\",\r",
+                  "\r",
+                  "    status:\"SUCCESS\"\r",
+                  "\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\",JSON.stringify(timeline));\r",
+                  "\r",
+                  "postman.setNextRequest(\"Notification History\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notification/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "notification",
+                "status"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Notification Status Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/notification/status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "notification",
+                    "status"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": "{\r\n    \"notificationId\":\"MAIL-202607230001\",\r\n    \"status\":\"DELIVERED\",\r\n    \"recipient\":\"operations@bank.com\",\r\n    \"deliveryStatus\":\"SUCCESS\",\r\n    \"message\":\"Notification delivered successfully.\"\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Notification History",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Notification History Retrieved\", function () {\r",
+                  "    pm.expect(true).to.be.true;\r",
+                  "});\r",
+                  "\r",
+                  "let timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "\r",
+                  "timeline.push({\r",
+                  "\r",
+                  "    time:new Date().toLocaleTimeString(),\r",
+                  "\r",
+                  "    module:\"Email Notification\",\r",
+                  "\r",
+                  "    event:\"Notification History\",\r",
+                  "\r",
+                  "    status:\"COMPLETE\"\r",
+                  "\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set(\"timeline\",JSON.stringify(timeline));\r",
+                  "\r",
+                  "postman.setNextRequest(\"Executive Dashboard\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notification/history",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "notification",
+                "history"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Notification History",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "Notification History Success",
+                  "host": [
+                    "Notification History Success"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "",
+              "header": [],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\r\n    \"history\":[\r\n        {\r\n            \"notificationId\":\"MAIL-202607230001\",\r\n            \"recipient\":\"operations@bank.com\",\r\n            \"status\":\"DELIVERED\"\r\n        },\r\n        {\r\n            \"notificationId\":\"MAIL-202607230002\",\r\n            \"recipient\":\"soc@bank.com\",\r\n            \"status\":\"DELIVERED\"\r\n        }\r\n    ],\r\n    \"status\":\"SUCCESS\"\r\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "11 Executive Dashboard",
+      "item": [
+        {
+          "name": "Executive Dashboard",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Executive Dashboard Generated\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "// Read execution timeline\r",
+                  "let timeline = [];\r",
+                  "\r",
+                  "try {\r",
+                  "    timeline = JSON.parse(pm.environment.get(\"timeline\") || \"[]\");\r",
+                  "} catch (e) {\r",
+                  "    timeline = [];\r",
+                  "}\r",
+                  "\r",
+                  "// Dashboard HTML Template\r",
+                  "const template = `\r",
+                  "<!DOCTYPE html>\r",
+                  "<html>\r",
+                  "\r",
+                  "<head>\r",
+                  "\r",
+                  "<style>\r",
+                  "\r",
+                  "body{\r",
+                  "    font-family:Arial,sans-serif;\r",
+                  "    background:#f4f6f9;\r",
+                  "    padding:25px;\r",
+                  "}\r",
+                  "\r",
+                  "h1{\r",
+                  "    text-align:center;\r",
+                  "    color:#004080;\r",
+                  "}\r",
+                  "\r",
+                  "h2{\r",
+                  "    color:#004080;\r",
+                  "    margin-top:30px;\r",
+                  "}\r",
+                  "\r",
+                  "table{\r",
+                  "    width:100%;\r",
+                  "    border-collapse:collapse;\r",
+                  "    background:white;\r",
+                  "}\r",
+                  "\r",
+                  "th{\r",
+                  "    background:#004080;\r",
+                  "    color:white;\r",
+                  "    padding:10px;\r",
+                  "}\r",
+                  "\r",
+                  "td{\r",
+                  "    border:1px solid #ddd;\r",
+                  "    padding:8px;\r",
+                  "}\r",
+                  "\r",
+                  ".card{\r",
+                  "    display:inline-block;\r",
+                  "    width:220px;\r",
+                  "    margin:10px;\r",
+                  "    padding:15px;\r",
+                  "    border-radius:8px;\r",
+                  "    background:white;\r",
+                  "    box-shadow:0px 2px 6px rgba(0,0,0,0.2);\r",
+                  "    text-align:center;\r",
+                  "}\r",
+                  "\r",
+                  ".title{\r",
+                  "    font-size:14px;\r",
+                  "    color:gray;\r",
+                  "}\r",
+                  "\r",
+                  ".value{\r",
+                  "    font-size:20px;\r",
+                  "    font-weight:bold;\r",
+                  "    margin-top:8px;\r",
+                  "}\r",
+                  "\r",
+                  "</style>\r",
+                  "\r",
+                  "</head>\r",
+                  "\r",
+                  "<body>\r",
+                  "\r",
+                  "<h1>🏦 API SENTINEL EXECUTIVE DASHBOARD</h1>\r",
+                  "\r",
+                  "<div class=\"card\">\r",
+                  "<div class=\"title\">Scenario</div>\r",
+                  "<div class=\"value\">{{scenario}}</div>\r",
+                  "</div>\r",
+                  "\r",
+                  "<div class=\"card\">\r",
+                  "<div class=\"title\">Transaction Status</div>\r",
+                  "<div class=\"value\">{{status}}</div>\r",
+                  "</div>\r",
+                  "\r",
+                  "<div class=\"card\">\r",
+                  "<div class=\"title\">Gateway Health</div>\r",
+                  "<div class=\"value\">{{gateway}}</div>\r",
+                  "</div>\r",
+                  "\r",
+                  "<div class=\"card\">\r",
+                  "<div class=\"title\">Risk Level</div>\r",
+                  "<div class=\"value\">{{risk}}</div>\r",
+                  "</div>\r",
+                  "\r",
+                  "<div class=\"card\">\r",
+                  "<div class=\"title\">Decision</div>\r",
+                  "<div class=\"value\">{{decision}}</div>\r",
+                  "</div>\r",
+                  "\r",
+                  "<div class=\"card\">\r",
+                  "<div class=\"title\">Automation</div>\r",
+                  "<div class=\"value\">{{execution}}</div>\r",
+                  "</div>\r",
+                  "\r",
+                  "<div class=\"card\">\r",
+                  "<div class=\"title\">Reversal</div>\r",
+                  "<div class=\"value\">{{reversal}}</div>\r",
+                  "</div>\r",
+                  "\r",
+                  "<div class=\"card\">\r",
+                  "<div class=\"title\">Compliance</div>\r",
+                  "<div class=\"value\">{{compliance}}</div>\r",
+                  "</div>\r",
+                  "\r",
+                  "<div class=\"card\">\r",
+                  "<div class=\"title\">Alert Level</div>\r",
+                  "<div class=\"value\">{{alert}}</div>\r",
+                  "</div>\r",
+                  "\r",
+                  "<div class=\"card\">\r",
+                  "<div class=\"title\">Email Status</div>\r",
+                  "<div class=\"value\">{{email}}</div>\r",
+                  "</div>\r",
+                  "\r",
+                  "<h2>Execution Timeline</h2>\r",
+                  "\r",
+                  "<table>\r",
+                  "\r",
+                  "<tr>\r",
+                  "<th>Time</th>\r",
+                  "<th>Module</th>\r",
+                  "<th>Event</th>\r",
+                  "<th>Status</th>\r",
+                  "</tr>\r",
+                  "\r",
+                  "{{#each timeline}}\r",
+                  "\r",
+                  "<tr>\r",
+                  "<td>{{time}}</td>\r",
+                  "<td>{{module}}</td>\r",
+                  "<td>{{event}}</td>\r",
+                  "<td>{{status}}</td>\r",
+                  "</tr>\r",
+                  "\r",
+                  "{{/each}}\r",
+                  "\r",
+                  "</table>\r",
+                  "\r",
+                  "</body>\r",
+                  "\r",
+                  "</html>\r",
+                  "`;\r",
+                  "\r",
+                  "// Render Dashboard\r",
+                  "pm.visualizer.set(template, {\r",
+                  "\r",
+                  "scenario: pm.environment.get(\"scenario\") || \"N/A\",\r",
+                  "\r",
+                  "status: pm.environment.get(\"status\") || \"SUCCESS\",\r",
+                  "\r",
+                  "gateway: pm.environment.get(\"gatewayHealth\") || \"HEALTHY\",\r",
+                  "\r",
+                  "risk: pm.environment.get(\"riskLevel\") || \"LOW\",\r",
+                  "\r",
+                  "decision: pm.environment.get(\"decision\") || \"APPROVED\",\r",
+                  "\r",
+                  "execution: pm.environment.get(\"executionStatus\") || \"COMPLETED\",\r",
+                  "\r",
+                  "reversal: pm.environment.get(\"reversalStatus\") || \"NOT REQUIRED\",\r",
+                  "\r",
+                  "compliance: pm.environment.get(\"complianceStatus\") || \"COMPLIANT\",\r",
+                  "\r",
+                  "alert: pm.environment.get(\"alertLevel\") || \"NONE\",\r",
+                  "\r",
+                  "email: pm.environment.get(\"notificationStatus\") || \"SENT\",\r",
+                  "\r",
+                  "timeline: timeline\r",
+                  "\r",
+                  "});\r",
+                  "\r",
+                  "// Stop Collection\r",
+                  "pm.execution.setNextRequest(null);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://192.168.10.40:8080/exec/dashboard",
+              "protocol": "http",
+              "host": [
+                "192",
+                "168",
+                "10",
+                "40"
+              ],
+              "port": "8080",
+              "path": [
+                "exec",
+                "dashboard"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

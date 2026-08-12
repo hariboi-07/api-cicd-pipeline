@@ -1,0 +1,191 @@
+{
+  "Initiate Transaction": {
+    "folder": "Transaction Service",
+    "method": "POST",
+    "endpoint": "/transaction/initiate",
+    "source": "production/transaction/initiate.js",
+    "dependsOn": [],
+    "affects": [
+      "Transaction Status",
+      "Gateway Health",
+      "Transaction API Health",
+      "Health Summary",
+      "Latency Report",
+      "Evaluate Risk"
+    ]
+  },
+
+  "Transaction Status": {
+    "folder": "Transaction Service",
+    "method": "GET",
+    "endpoint": "/transaction/status",
+    "source": "production/transaction/status.js",
+    "dependsOn": [
+      "Initiate Transaction"
+    ],
+    "affects": [
+      "Health Summary",
+      "Business Dashboard"
+    ]
+  },
+
+  "Transaction Reversal": {
+    "folder": "Transaction Service",
+    "method": "POST",
+    "endpoint": "/transaction/reversal",
+    "source": "production/transaction/reversal.js",
+    "dependsOn": [
+      "Transaction Status"
+    ],
+    "affects": [
+      "Failure History",
+      "Business Dashboard"
+    ]
+  },
+
+  "Gateway Health": {
+    "folder": "API Health Monitor",
+    "method": "GET",
+    "endpoint": "/health/gateway",
+    "source": "production/health/gateway.js",
+    "dependsOn": [],
+    "affects": [
+      "Health Summary",
+      "Latency Report"
+    ]
+  },
+
+  "Transaction API Health": {
+    "folder": "API Health Monitor",
+    "method": "GET",
+    "endpoint": "/health/transaction",
+    "source": "production/health/transaction.js",
+    "dependsOn": [
+      "Initiate Transaction"
+    ],
+    "affects": [
+      "Health Summary"
+    ]
+  },
+
+  "Health Summary": {
+    "folder": "API Health Monitor",
+    "method": "GET",
+    "endpoint": "/health/summary",
+    "source": "production/health/summary.js",
+    "dependsOn": [
+      "Gateway Health",
+      "Transaction API Health"
+    ],
+    "affects": [
+      "Business Dashboard"
+    ]
+  },
+
+  "Latency Report": {
+    "folder": "API Health Monitor",
+    "method": "GET",
+    "endpoint": "/health/latency",
+    "source": "production/health/latency.js",
+    "dependsOn": [
+      "Gateway Health"
+    ],
+    "affects": [
+      "Business Dashboard"
+    ]
+  },
+
+  "Analyze Failure": {
+    "folder": "Root Cause Analyzer",
+    "method": "GET",
+    "endpoint": "/analysis/rootcause",
+    "source": "production/analysis/rootcause.js",
+    "dependsOn": [
+      "Transaction Status"
+    ],
+    "affects": [
+      "Failure Statistics",
+      "Failure History"
+    ]
+  },
+
+  "Failure Statistics": {
+    "folder": "Root Cause Analyzer",
+    "method": "GET",
+    "endpoint": "/analysis/statistics",
+    "source": "production/analysis/statistics.js",
+    "dependsOn": [
+      "Analyze Failure"
+    ],
+    "affects": [
+      "Business Dashboard"
+    ]
+  },
+
+  "Failure History": {
+    "folder": "Root Cause Analyzer",
+    "method": "GET",
+    "endpoint": "/analysis/history",
+    "source": "production/analysis/history.js",
+    "dependsOn": [
+      "Analyze Failure"
+    ],
+    "affects": [
+      "Business Dashboard"
+    ]
+  },
+
+  "Evaluate Risk": {
+    "folder": "Risk Engine",
+    "method": "GET",
+    "endpoint": "/transaction/risk",
+    "source": "production/risk/evaluate.js",
+    "dependsOn": [
+      "Initiate Transaction"
+    ],
+    "affects": [
+      "Execute Automation"
+    ]
+  },
+
+  "Execute Automation": {
+    "folder": "Automation Executor",
+    "method": "GET",
+    "endpoint": "/automation/execute",
+    "source": "production/automation/execute.js",
+    "dependsOn": [
+      "Evaluate Risk"
+    ],
+    "affects": [
+      "Automation Status"
+    ]
+  },
+
+  "Automation Status": {
+    "folder": "Automation Executor",
+    "method": "GET",
+    "endpoint": "/automation/status",
+    "source": "production/automation/status.js",
+    "dependsOn": [
+      "Execute Automation"
+    ],
+    "affects": [
+      "Business Dashboard"
+    ]
+  },
+
+  "Business Dashboard": {
+    "folder": "Business Dashboard",
+    "method": "GET",
+    "endpoint": "/dashboard",
+    "source": "production/dashboard/dashboard.js",
+    "dependsOn": [
+      "Health Summary",
+      "Latency Report",
+      "Failure Statistics",
+      "Automation Status",
+      "Transaction Status"
+    ],
+    "affects": []
+  }
+}
