@@ -1,35 +1,35 @@
-name: API Sentinel CI
+name: Postman Intelligent Validation Pipeline
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  postman-tests:
+
+  validate:
+
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 20
+
+      - name: Install Dependencies
+        run: npm install
 
       - name: Install Newman
-        run: npm install -g newman newman-reporter-htmlextra
+        run: npm install -g newman
 
-      - name: Run Postman Collection
-        run: |
-          newman run "collections/API Sentinel - Layer7.postman_collection.json" \
-            -e "collections/API Sentinel - Layer7.postman_environment.json" \
-            --timeout-request 5000 \
-            --timeout 60000 \
-            -r cli,htmlextra \
-            --reporter-htmlextra-export reports/report.html
-
-      - name: Upload HTML Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: Newman-Report
-          path: reports/report.html
+      - name: Execute Smart Validation Pipeline
+        run: node scripts/run-pipeline.js
